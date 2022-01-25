@@ -10,7 +10,7 @@ db = create_engine("postgresql:///chinook")
 base = declarative_base()
 
 
-# Create a class-based model for the "Programmer" table
+# create a class-based model for the "Programmer" table
 class Programmer(base):
     __tablename__ = "Programmer"
     id = Column(Integer, primary_key=True)
@@ -31,84 +31,82 @@ session = Session()
 base.metadata.create_all(db)
 
 
+# creating records on our Progammer table
+ada_lovelace = Programmer(
+    first_name="Ada",
+    last_name="Lovelace",
+    gender="F",
+    nationality="British",
+    famous_for="First Programmer"
+)
 
-# Creating records on our Programmer table
-# ada_lovelace = Programmer(
-#     first_name="Ada",
-#     last_name="Lovelace",
-#     gender="F",
-#     nationality="British",
-#     famous_for="First Programmer"
-# )
+alan_turing = Programmer(
+    first_name="Alan",
+    last_name="Turing",
+    gender="M",
+    nationality="British",
+    famous_for="Modern Computing"
+)
 
-# alan_turing = Programmer(
-#     first_name="Alan",
-#     last_name="Turning",
-#     gender="M",
-#     nationality="British",
-#     famous_for="Modern Computing Programmer"
-# )
+grace_hopper = Programmer(
+    first_name="Grace",
+    last_name="Hopper",
+    gender="F",
+    nationality="American",
+    famous_for="COBOL language"
+)
 
-# grace_hopper = Programmer(
-#     first_name="Grace",
-#     last_name="Hopper",
-#     gender="F",
-#     nationality="American",
-#     famous_for="COBOL Language"
-# )
+margaret_hamilton = Programmer(
+    first_name="Margaret",
+    last_name="Hamilton",
+    gender="F",
+    nationality="American",
+    famous_for="Apollo 11"
+)
 
-# margaret_hamilton = Programmer(
-#     first_name="Margaret",
-#     last_name="Hamilton",
-#     gender="F",
-#     nationality="American",
-#     famous_for="Apollo 11"
-# )
+bill_gates = Programmer(
+    first_name="Bill",
+    last_name="Gates",
+    gender="M",
+    nationality="American",
+    famous_for="Microsoft"
+)
 
-# bill_gates = Programmer(
-#     first_name="Bill",
-#     last_name="Gates",
-#     gender="M",
-#     nationality="American",
-#     famous_for="Microsoft 11"
-# )
+tim_berners_lee = Programmer(
+    first_name="Tim",
+    last_name="Berners-Lee",
+    gender="M",
+    nationality="British",
+    famous_for="World Wide Web"
+)
 
-# tim_berners_lee = Programmer(
-#     first_name="Tim",
-#     last_name="Berners-Lee",
-#     gender="M",
-#     nationality="British",
-#     famous_for="World Wide Web"
-# )
+your_name = Programmer(
+    first_name="Your First Name",
+    last_name="Your Last Name",
+    gender="Your Gender",
+    nationality="Your Nationality",
+    famous_for="Celebrate Yourself Here"
+)
 
-# oliver_train = Programmer(
-#     first_name="Oliver",
-#     last_name="Train",
-#     gender="M",
-#     nationality="British",
-#     famous_for="Getting to p4 25/1/22"
-# )
-
-# Add each instance of our programmers to our session
+# add each instance of our programmers to our session
 # session.add(ada_lovelace)
 # session.add(alan_turing)
 # session.add(grace_hopper)
 # session.add(margaret_hamilton)
 # session.add(bill_gates)
 # session.add(tim_berners_lee)
-# session.add(oliver_train)
-
-# Commit our session to the database
-# session.commit()
+# session.add(your_name)
 
 
-# Updating a single record
+# updating a single record
 # programmer = session.query(Programmer).filter_by(id=7).first()
 # programmer.famous_for = "World President"
 
-# # Commit the above session to the database
+# commit our session to the database
 # session.commit()
 
+
+# updating multiple records
 # people = session.query(Programmer)
 # for person in people:
 #     if person.gender == "F":
@@ -116,15 +114,36 @@ base.metadata.create_all(db)
 #     elif person.gender == "M":
 #         person.gender = "Male"
 #     else:
-#         print("GENDER NOT DEFINED!")
+#         print("Gender not defined")
 #     session.commit()
 
-# Deleting a single record
-rname = input("Enter a name: ")
-lname = input("Enter a last name: ")
-programmer = session.query(Programmer).filter_by(first_name=fname, lastname=lname).first()
 
-# Query the database to find all Programmers
+# deleting a single record
+# fname = input("Enter a first name: ")
+# lname = input("Enter a last name: ")
+# programmer = session.query(Programmer).filter_by(first_name=fname, last_name=lname).first()
+# defensive programming
+# if programmer is not None:
+#     print("Programmer Found: ", programmer.first_name + " " + programmer.last_name)
+#     confirmation = input("Are you sure you want to delete this record? (y/n) ")
+#     if confirmation.lower() == "y":
+#         session.delete(programmer)
+#         session.commit()
+#         print("Programmer has been deleted")
+#     else:
+#         print("Programmer not deleted")
+# else:
+#     print("No records found")
+
+
+# delete multiple/all records
+# programmers = session.query(Programmer)
+# for programmer in programmers:
+#     session.delete(programmer)
+#     session.commit()
+
+
+# query the database to find all Programmers
 programmers = session.query(Programmer)
 for programmer in programmers:
     print(
